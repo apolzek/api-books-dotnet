@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/apolzek/Downloads/SampleApp/BooksApi.csproj": {}
+    "/home/apolzek/Repositórios/api-books-aspnet-core/BooksApi.csproj": {}
   },
   "projects": {
-    "/home/apolzek/Downloads/SampleApp/BooksApi.csproj": {
+    "/home/apolzek/Repositórios/api-books-aspnet-core/BooksApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/apolzek/Downloads/SampleApp/BooksApi.csproj",
+        "projectUniqueName": "/home/apolzek/Repositórios/api-books-aspnet-core/BooksApi.csproj",
         "projectName": "BooksApi",
-        "projectPath": "/home/apolzek/Downloads/SampleApp/BooksApi.csproj",
+        "projectPath": "/home/apolzek/Repositórios/api-books-aspnet-core/BooksApi.csproj",
         "packagesPath": "/home/apolzek/.nuget/packages/",
-        "outputPath": "/home/apolzek/Downloads/SampleApp/obj/",
+        "outputPath": "/home/apolzek/Repositórios/api-books-aspnet-core/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/apolzek/.nuget/NuGet/NuGet.Config"
@@ -45,6 +45,10 @@
             "MongoDB.Driver": {
               "target": "Package",
               "version": "[2.9.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[5.6.3, )"
             }
           },
           "imports": [

@@ -28,12 +28,15 @@ namespace BooksApi.Services
 
         public Book Create(Book book)
         {
+            book.Id = "";
             _books.InsertOne(book);
             return book;
         }
 
-        public void Update(string id, Book bookIn) =>
+        public void Update(string id, Book bookIn){
+            bookIn.Id = id;
             _books.ReplaceOne(book => book.Id == id, bookIn);
+        }
 
         public void Remove(Book bookIn) =>
             _books.DeleteOne(book => book.Id == bookIn.Id);
