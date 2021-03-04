@@ -1,5 +1,8 @@
 # api-books-aspnet-core
+
 Web API with ASP.NET  Core and MongoDB :heavy_check_mark: .NET Core SDK 5
+
+*Create a web API that performs Create, Read, Update, and Delete (CRUD) operations on a MongoDB NoSQL database.*
 
 ## Prerequisites
 
@@ -7,9 +10,9 @@ Web API with ASP.NET  Core and MongoDB :heavy_check_mark: .NET Core SDK 5
 - Visual Studio Code 
 - MongoDB(docker or service)
 
-This tutorial creates a web API that performs Create, Read, Update, and Delete (CRUD) operations on a MongoDB NoSQL database.
+## Mongo object example 
 
-    ```
+  ```json
       {
         "_id" : ObjectId("5bfd996f7b8e48dc15ff215d"),
         "Name" : "Design Patterns",
@@ -24,11 +27,11 @@ This tutorial creates a web API that performs Create, Read, Update, and Delete (
         "Category" : "Computers",
         "Author" : "Robert C. Martin"
       }
-    ```
+  ```
 
 ## MongoDB settings
 
-1. Add the following database configuration values to *appsettings.json*:
+Add the following database configuration values to *appsettings.json*:
 
   ```javascript
     {
