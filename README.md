@@ -12,7 +12,7 @@ Web API with ASP.NET  Core and MongoDB :heavy_check_mark: .NET Core SDK 5
 
 ## Mongo object example 
 
-  ```json
+  ```javascript
       {
         "_id" : ObjectId("5bfd996f7b8e48dc15ff215d"),
         "Name" : "Design Patterns",
