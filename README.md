@@ -17,7 +17,7 @@ dotnet restore
 dotnet run
 ```
 
-## Mongo object example 
+### Mongo object example 
 
 ```javascript
 {
@@ -36,7 +36,7 @@ dotnet run
 }
 ```
 
-## MongoDB settings
+### MongoDB settings
 
 Add the following database configuration values to *appsettings.json*:
 
@@ -49,7 +49,7 @@ Add the following database configuration values to *appsettings.json*:
 },
 ```
 
-## Change port
+### Change port
 
 Edit *Program.cs* file
 
@@ -75,12 +75,12 @@ chmod +x fake-requests.sh
 ./fake-requests.sh
 ```
 
-## Test the web API
+### Test the web API
 
   - Navigate to `http://localhost:<port>/api/books
   - Example: `http://localhost:4000/api/books`
 
-## swagger
+### swagger
 
   - Navigate to `http://localhost:<port>/swagger/index.html`
   - Example: `http://localhost:4000/swagger/index.html`
