@@ -77,7 +77,7 @@ chmod +x fake-requests.sh
 
 ### Test the web API
 
-  - Navigate to `http://localhost:<port>/api/books
+  - Navigate to `http://localhost:<port>/api/books`
   - Example: `http://localhost:4000/api/books`
 
 ### swagger
