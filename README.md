@@ -10,6 +10,13 @@ Web API with ASP.NET  Core and MongoDB :heavy_check_mark: .NET Core SDK 5
 - Visual Studio Code 
 - MongoDB(docker or service)
 
+## Run source code
+
+```
+dotnet restore
+dotnet run
+```
+
 ## Mongo object example 
 
 ```javascript
@@ -54,7 +61,7 @@ WebHost.CreateDefaultBuilder(args)
 ```
 
 ### Insert manually
- 
+
 ```
 mongo
 use BookstoreDb
@@ -70,8 +77,10 @@ chmod +x fake-requests.sh
 
 ## Test the web API
 
-  - Navigate to `http://localhost:<port>/api/books`
+  - Navigate to `http://localhost:<port>/api/books
+  - Example: `http://localhost:4000/api/books`
 
 ## swagger
 
-  - Navigate to `http://localhost:4000/swagger/index.html`
+  - Navigate to `http://localhost:<port>/swagger/index.html`
+  - Example: `http://localhost:4000/swagger/index.html`
