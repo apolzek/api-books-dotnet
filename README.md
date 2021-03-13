@@ -21,7 +21,15 @@ dotnet run
 ```
 dotnet publish -c Release -o publish_output
 docker build -t apibooks .
+```
+
+```
 docker run -p 4000:4000 -d apibooks:latest
+```
+
+or
+
+```
 docker-compose up -d
 ```
 
