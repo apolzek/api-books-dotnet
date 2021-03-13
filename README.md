@@ -16,6 +16,16 @@ Web API with ASP.NET  Core and MongoDB :heavy_check_mark: .NET Core SDK 5
 dotnet restore
 dotnet run
 ```
+### Build / Create a Docker Image / Test
+
+```
+dotnet publish -c Release -o publish_output
+docker build -t apibooks .
+docker run -p 4000:4000 -d apibooks:latest
+docker-compose up -d
+```
+
+> OBS: 'apibooks' Can be changed to a name of your choice
 
 ### Mongo object example 
 
@@ -49,6 +59,8 @@ Add the following database configuration values to *appsettings.json*:
 },
 ```
 
+> OBS: Replace localhost with your mongodb address
+
 ### Change port
 
 Edit *Program.cs* file
@@ -56,7 +68,7 @@ Edit *Program.cs* file
 ```
 WebHost.CreateDefaultBuilder(args)
     .UseStartup<Startup>()
-    .UseUrls(urls: "http://localhost:4000")
+    .UseUrls(urls: "http://0.0.0.0:4000")
     .Build();
 ```
 
