@@ -9,6 +9,8 @@ Web API with ASP.NET  Core and MongoDB :heavy_check_mark: .NET Core SDK 5
 - .NET Core SDK 5.0 or later
 - Visual Studio Code 
 - MongoDB(docker or service)
+- Docker Engine 20.10.5
+- docker-compose version 1.28.5
 
 ## Run source code
 
