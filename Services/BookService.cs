@@ -43,6 +43,10 @@ namespace BooksApi.Services
 
         public void Remove(string id) => 
             _books.DeleteOne(book => book.Id == id);
+
+        public void Remove(){
+            _books.DeleteMany(book => book.Author is string);
+        }
     }
 }
 #endregion

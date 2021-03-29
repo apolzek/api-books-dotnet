@@ -99,10 +99,10 @@ chmod +x fake-requests.sh
 
 ### Test the web API
 
-  - Navigate to `http://localhost:<port>/api/books`
-  - Example: `http://localhost:4000/api/books`
+  - Navigate to `http://localhost:<port>/api/Books`
+  - Example: `http://localhost:4000/api/Books`
 
-### swagger
+### swagger(open on brownser)
 
   - Navigate to `http://localhost:<port>/swagger/index.html`
   - Example: `http://localhost:4000/swagger/index.html`

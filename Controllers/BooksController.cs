@@ -70,5 +70,13 @@ namespace BooksApi.Controllers
 
             return NoContent();
         }
+        
+        [HttpDelete()]
+        public IActionResult Delete()
+        {
+            _bookService.Remove();
+
+            return NoContent();
+        }
     }
 }
