@@ -11,9 +11,6 @@ namespace BooksApi.Models
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
-
-        // [BsonElement("Name")]
-        // [JsonProperty("Name")]
         public string BookName { get; set; }
 
         public decimal Price { get; set; }

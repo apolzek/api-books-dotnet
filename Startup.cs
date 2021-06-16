@@ -1,9 +1,5 @@
-#region snippet_UsingBooksApiModels
 using BooksApi.Models;
-#endregion
-#region snippet_UsingBooksApiServices
 using BooksApi.Services;
-#endregion
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,6 +40,8 @@ namespace BooksApi
                 .AddNewtonsoftJson(options => options.UseMemberCasing());
 
             services.AddSwaggerGen();
+
+            services.AddHealthChecks();
         }
         #endregion
 
@@ -69,6 +67,7 @@ namespace BooksApi
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHealthChecks("/health");
             });
         }
     }
