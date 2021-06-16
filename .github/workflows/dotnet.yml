@@ -31,4 +31,4 @@ jobs:
         webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
         color: "#48f442"
         username: "GitHub Bot"
-        message: "Test pipeline, send message !"
+        message: "Test pipeline xD Hello Discord"
