@@ -7,35 +7,55 @@ Web API with ASP.NET  Core and MongoDB :heavy_check_mark: .NET Core SDK 5
 ## Prerequisites
 
 - .NET Core SDK 5.0 or later
-- Visual Studio Code 
 - MongoDB(docker or service)
 - Docker Engine 20.10.5
 - docker-compose version 1.28.5
 
-## Run source code
+## Run development mode
 
+*application*:
 ```
+cd api-books-aspnet-core/
 dotnet restore
 dotnet run
+# access: http://localhost:4000/swagger
 ```
-### Build / Create a Docker Image / Test
+
+*mongodb*:
+```
+docker run --rm --name mongodb -p 27017:27017 mongo:latest
+# or
+sudo systemctl start mongod
+```
+
+## Build 
 
 ```
 dotnet publish -c Release -o publish_output
+```
+
+## Create a Docker Image
+
+```
 docker build -t apibooks .
 ```
+> Note: apibooks can be replaced
+
+## Test Docker Image
 
 ```
 docker run -p 4000:4000 -d apibooks:latest
+
+# to access the mongodb container use: --network host
+docker run -p 4000:4000 --network host -d apibooks:latest
 ```
 
-or
+## docker-compose
 
 ```
 docker-compose up -d
 ```
-
-> OBS: 'apibooks' Can be changed to a name of your choice
+> Node: Change 'localhost' to 'mongo-example' in file appsettings.json. Build and generate a new docker image.
 
 ### Mongo object example 
 

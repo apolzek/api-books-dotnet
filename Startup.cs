@@ -1,9 +1,5 @@
-#region snippet_UsingBooksApiModels
 using BooksApi.Models;
-#endregion
-#region snippet_UsingBooksApiServices
 using BooksApi.Services;
-#endregion
 using System;
 using System.Collections.Generic;
 using System.Linq;
