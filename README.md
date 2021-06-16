@@ -46,7 +46,7 @@ docker build -t apibooks .
 ```
 docker run -p 4000:4000 -d apibooks:latest
 
-# to access the mongodb container use: --network host
+# for api communication with mongo use the flag: --network host
 docker run -p 4000:4000 --network host -d apibooks:latest
 ```
 
@@ -56,6 +56,8 @@ docker run -p 4000:4000 --network host -d apibooks:latest
 docker-compose up -d
 ```
 > Node: Change 'localhost' to 'mongo-example' in file appsettings.json. Build and generate a new docker image.
+
+## Details
 
 ### Mongo object example 
 
@@ -104,6 +106,8 @@ WebHost.CreateDefaultBuilder(args)
 
 ### Insert manually
 
+mongo cli
+
 ```
 mongo
 use BookstoreDb
@@ -126,3 +130,6 @@ chmod +x fake-requests.sh
 
   - Navigate to `http://localhost:<port>/swagger/index.html`
   - Example: `http://localhost:4000/swagger/index.html`
+
+### HealthCheck
+  - Access http://localhost:4000/health

@@ -40,6 +40,8 @@ namespace BooksApi
                 .AddNewtonsoftJson(options => options.UseMemberCasing());
 
             services.AddSwaggerGen();
+
+            services.AddHealthChecks();
         }
         #endregion
 
@@ -65,6 +67,7 @@ namespace BooksApi
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHealthChecks("/health");
             });
         }
     }
