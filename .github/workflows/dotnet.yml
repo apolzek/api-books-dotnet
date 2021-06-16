@@ -23,3 +23,12 @@ jobs:
 #       run: dotnet build --no-restore
 #     - name: Test
 #       run: dotnet test --no-build --verbosity normal
+
+    - name: send message
+      uses: appleboy/discord-action@master
+      with:
+        webhook_id: ${{ secrets.WEBHOOK_ID }}
+        webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
+        color: "#48f442"
+        username: "GitHub Bot"
+        message: "Test pipeline, send message !"
