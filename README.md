@@ -45,17 +45,15 @@ docker build -t apibooks .
 
 ```
 docker run -p 4000:4000 -d apibooks:latest
-
-# for api communication with mongo use the flag: --network host
-docker run -p 4000:4000 --network host -d apibooks:latest
 ```
+> Note: The image must be created in advance
 
 ## docker-compose
 
 ```
 docker-compose up -d
 ```
-> Node: Change 'localhost' to 'mongo-example' in file appsettings.json. Build and generate a new docker image.
+> Note: Change 'localhost' to 'mongo-example' in file appsettings.json. Build and generate a new docker image.
 
 ## Details
 
