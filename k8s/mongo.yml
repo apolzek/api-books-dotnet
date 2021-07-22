@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mongo-example
+spec:
+  serviceName: mongo-example
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongo-example
+  template:
+    metadata:
+      labels:
+        app: mongo-example
+        selector: mongo-example
+    spec:
+      containers:
+      - name: mongo-example
+        image: mongo:4.0.8
+      #   env:
+      #     - name: MONGO_INITDB_ROOT_USERNAME
+      #       value: admin
+      #     - name: MONGO_INITDB_ROOT_PASSWORD
+      #       value: password
+      # nodeSelector:
+      #   kubernetes.io/hostname: mongodb-node
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo-example
+spec:
+  selector:
+    app: mongo-example
+  ports:
+    - protocol: TCP
+      port: 27017
+      targetPort: 27017

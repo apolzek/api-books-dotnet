@@ -6,8 +6,8 @@ Web API with ASP.NET  Core and MongoDB :heavy_check_mark: .NET Core SDK 5
 
 ## Prerequisites
 
-- .NET Core SDK 5.0 or later
-- MongoDB(docker or service)
+- [.NET 5.0](https://dotnet.microsoft.com/download) or later
+- MongoDB
 - Docker Engine 20.10.5
 - docker-compose version 1.28.5
 
@@ -18,14 +18,19 @@ Web API with ASP.NET  Core and MongoDB :heavy_check_mark: .NET Core SDK 5
 cd api-books-aspnet-core/
 dotnet restore
 dotnet run
-# access: http://localhost:4000/swagger
 ```
+> browser: http://localhost:4000/swagger
 
 *mongodb*:
+
 ```
 docker run --rm --name mongodb -p 27017:27017 mongo:latest
 # or
 sudo systemctl start mongod
+```
+
+*test connection* :
+curl -X GET "http://0.0.0.0:4000/api/Books" -H  "accept: text/plain"
 ```
 
 ## Build 
@@ -118,6 +123,7 @@ db.Books.insertMany([{'BookName':'Design Patterns','Price':54.93,'Category':'Com
 chmod +x fake-requests.sh
 ./fake-requests.sh
 ```
+> Note: install jq before
 
 ### Test the web API
 
