@@ -1,6 +1,6 @@
 # api-books-aspnet-core
 
-Web API with ASP.NET  Core and MongoDB :heavy_check_mark: .NET Core SDK 5
+Web API with ASP.NET  Core and MongoDB :heavy_check_mark: .NET 5.0
 
 *Create a web API that performs Create, Read, Update, and Delete (CRUD) operations on a MongoDB NoSQL database.*
 
