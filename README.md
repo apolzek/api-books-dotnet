@@ -118,7 +118,7 @@ WebHost.CreateDefaultBuilder(args)
 mongo cli
 
 ```
- docker exec -it <CONTAINER_ID> bash
+docker exec -it <CONTAINER_ID> bash
 mongo
 use BookstoreDb
 db.Books.insertMany([{'BookName':'Design Patterns','Price':54.93,'Category':'Computers','Author':'Ralph Johnson'}, {'BookName':'Clean Code','Price':43.15,'Category':'Computers','Author':'Robert C. Martin'}])
