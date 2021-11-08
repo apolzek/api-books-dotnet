@@ -10,7 +10,7 @@ services:
       - network-test
 
   api-books-example:
-    image: api-books:latest
+    image: apolzek/api-books:v1.2
     ports:
       - "4000:4000"
     networks: 
