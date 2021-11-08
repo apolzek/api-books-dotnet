@@ -1,6 +1,6 @@
-# api-books-aspnet-core
+# api-books-dotnet5
 
-Web API with ASP.NET  Core and MongoDB :heavy_check_mark: .NET 5.0
+Web API with .NET and MongoDB :heavy_check_mark: .NET 5.0
 
 > 5.0.402
 
@@ -17,7 +17,7 @@ Web API with ASP.NET  Core and MongoDB :heavy_check_mark: .NET 5.0
 
 *rest api*:
 ```
-cd api-books-aspnet-core/
+cd api-books-dotnet5/
 dotnet restore
 dotnet run
 ```
