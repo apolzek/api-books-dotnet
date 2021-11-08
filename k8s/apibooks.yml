@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: apibooks
+  name: api-books
   labels:
-    app: apibooks
+    app: api-books
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: apibooks
+      app: api-books
   template:
     metadata:
       labels:
-        app: apibooks
+        app: api-books
     spec:
       containers:
-      - name: apibooks
-        image: apolzek/apibooks:latest
+      - name: api-books
+        image: apolzek/api-books:v1.2
         ports:
         - containerPort: 4000
 
@@ -25,10 +25,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: apibooks
+  name: api-books
 spec:
   selector:
-    app: apibooks
+    app: api-books
   ports:
     - protocol: TCP
       port: 4000
