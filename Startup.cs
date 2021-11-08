@@ -59,7 +59,7 @@ namespace BooksApi
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "api-books-aspnet-core V1");
             });
 
             app.UseHttpsRedirection();

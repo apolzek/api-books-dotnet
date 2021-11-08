@@ -9,8 +9,8 @@ services:
     networks: 
       - network-test
 
-  apibooks-example:
-    image: apibooks:latest
+  api-books-example:
+    image: api-books:latest
     ports:
       - "4000:4000"
     networks: 

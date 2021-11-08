@@ -2,18 +2,20 @@
 
 Web API with ASP.NET  Core and MongoDB :heavy_check_mark: .NET 5.0
 
+> 5.0.402
+
 *Create a web API that performs Create, Read, Update, and Delete (CRUD) operations on a MongoDB NoSQL database.*
 
 ## Prerequisites
 
 - [.NET 5.0](https://dotnet.microsoft.com/download) or later
 - MongoDB
-- Docker Engine 20.10.5
-- docker-compose version 1.28.5
+- Docker Engine 20.10.10
+- docker-compose version 1.29.2
 
 ## Run development mode
 
-*application*:
+*rest api*:
 ```
 cd api-books-aspnet-core/
 dotnet restore
@@ -29,8 +31,11 @@ docker run --rm --name mongodb -p 27017:27017 mongo:latest
 sudo systemctl start mongod
 ```
 
-*test connection* :
+*test* :
 ```
+curl http://0.0.0.0:4000/health
+
+# test connectivity with mongodb
 curl -X GET "http://0.0.0.0:4000/api/Books" -H  "accept: text/plain"
 ```
 
@@ -43,14 +48,14 @@ dotnet publish -c Release -o publish_output
 ## Create a Docker Image
 
 ```
-docker build -t apibooks .
+docker build -t api-books .
 ```
-> Note: apibooks can be replaced
+> Note: api-books can be replaced
 
 ## Test Docker Image
 
 ```
-docker run -p 4000:4000 -d apibooks:latest
+docker run -p 4000:4000 -d api-books:latest
 ```
 > Note: The image must be created in advance
 
@@ -113,6 +118,7 @@ WebHost.CreateDefaultBuilder(args)
 mongo cli
 
 ```
+ docker exec -it <CONTAINER_ID> bash
 mongo
 use BookstoreDb
 db.Books.insertMany([{'BookName':'Design Patterns','Price':54.93,'Category':'Computers','Author':'Ralph Johnson'}, {'BookName':'Clean Code','Price':43.15,'Category':'Computers','Author':'Robert C. Martin'}])
