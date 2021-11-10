@@ -15,6 +15,10 @@ Web API with .NET and MongoDB :heavy_check_mark: .NET 5.0
 
 ## Run development mode
 
+```bash
+export ASPNETCORE_ENVIRONMENT=Development
+```
+
 *rest api*:
 ```
 cd api-books-dotnet5/

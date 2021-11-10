@@ -55,7 +55,7 @@ namespace BooksApi
             {
                 app.UseHsts();
             }
-            
+
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
