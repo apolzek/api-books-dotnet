@@ -4,7 +4,7 @@ Web API with .NET and MongoDB :heavy_check_mark: .NET 5.0
 
 > 5.0.402
 
-:whale2: **Latest**: apolzek/api-books:v1.2
+:whale2: **Latest**: apolzek/api-books:v1.3
 
 *Create a web API that performs Create, Read, Update, and Delete (CRUD) operations on a MongoDB NoSQL database.*
 
