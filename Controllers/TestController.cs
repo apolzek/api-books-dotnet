@@ -19,7 +19,7 @@ namespace BooksApi.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
+        [HttpGet("LoggingLevels")]
         public ActionResult<string> Get()
         {
             _logger.LogInformation("LogInformation => Controller: TestController");
@@ -31,7 +31,7 @@ namespace BooksApi.Controllers
             return "api-books";
         }
 
-        [HttpGet("name")]
+        [HttpGet("Hello")]
         public ActionResult<string> GetResult(string name)
         {
             return "Hello " + name;
@@ -49,14 +49,14 @@ namespace BooksApi.Controllers
             return requestHeaders;
         }
 
-        [HttpGet("testing")]
+        [HttpGet("QueryString")]
         public IActionResult Get([FromQuery(Name = "querystring")] string querystring)
         {
             return Ok("query testing: " + querystring);
         }
 
 
-        [HttpGet("sum")]
+        [HttpGet("SumNumbers")]
         public IActionResult Details(int num1, int num2)
         {
             return Ok(num1 + num2);

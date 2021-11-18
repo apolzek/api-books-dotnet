@@ -4,6 +4,8 @@ Web API with .NET and MongoDB :heavy_check_mark: .NET 5.0
 
 > 5.0.402
 
+:whale2: **Latest**: apolzek/api-books:v1.2
+
 *Create a web API that performs Create, Read, Update, and Delete (CRUD) operations on a MongoDB NoSQL database.*
 
 ## Prerequisites
@@ -19,7 +21,8 @@ Web API with .NET and MongoDB :heavy_check_mark: .NET 5.0
 export ASPNETCORE_ENVIRONMENT=Development
 ```
 
-*rest api*:
+*api*:
+
 ```
 cd api-books-dotnet5/
 dotnet restore
@@ -35,7 +38,8 @@ docker run --rm --name mongodb -p 27017:27017 mongo:latest
 sudo systemctl start mongod
 ```
 
-*test* :
+*validation* :
+
 ```
 curl http://0.0.0.0:4000/health
 
@@ -69,6 +73,15 @@ docker run -p 4000:4000 -d api-books:latest
 docker-compose up -d
 ```
 > Note: Change 'localhost' to 'mongo-example' in file appsettings.json. Build and generate a new docker image.
+
+## kubernetes
+
+```
+cd k8s/
+kubectl apply -f .
+```
+
+> kubectl v1.22.3
 
 ## Details
 
@@ -117,9 +130,11 @@ WebHost.CreateDefaultBuilder(args)
     .Build();
 ```
 
+> OBS: Iimpacts Docker image. change port in Dockerfile
+
 ### Insert manually
 
-mongo cli
+*mongo cli*
 
 ```
 docker exec -it <CONTAINER_ID> bash
@@ -134,7 +149,7 @@ db.Books.insertMany([{'BookName':'Design Patterns','Price':54.93,'Category':'Com
 chmod +x fake-requests.sh
 ./fake-requests.sh
 ```
-> Note: install jq before
+> Note: Install jq before
 
 ### Test the web API
 
