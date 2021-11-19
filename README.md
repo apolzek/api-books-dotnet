@@ -17,16 +17,13 @@ Web API with .NET and MongoDB :heavy_check_mark: .NET 5.0
 
 ## Run development mode
 
-```bash
-export ASPNETCORE_ENVIRONMENT=Development
-```
 
 *api*:
 
 ```
 cd api-books-dotnet5/
 dotnet restore
-dotnet run
+export ASPNETCORE_ENVIRONMENT=Development && dotnet run
 ```
 > browser: http://localhost:4000/swagger
 

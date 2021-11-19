@@ -11,16 +11,17 @@ namespace BooksApi.Controllers
     public class TestController : ControllerBase
     {
         private readonly ILogger<TestController> _logger;
-
+        private readonly IBookstoreDatabaseSettings _settings;
         // private readonly BookService _bookService;
 
-        public TestController(ILogger<TestController> logger)
+        public TestController(ILogger<TestController> logger, IBookstoreDatabaseSettings settings)
         {
             _logger = logger;
+            _settings = settings;
         }
 
         [HttpGet("LoggingLevels")]
-        public ActionResult<string> Get()
+        public ActionResult<string> LoggingLevels()
         {
             _logger.LogInformation("LogInformation => Controller: TestController");
             _logger.LogCritical("LogCritical => Controller: TestController");
@@ -28,11 +29,11 @@ namespace BooksApi.Controllers
             _logger.LogDebug("LogDebug => Controller: TestController");
             _logger.LogWarning("LogDebug => Controller: TestController");
 
-            return "api-books";
+            return "api-books logging-levels";
         }
 
         [HttpGet("Hello")]
-        public ActionResult<string> GetResult(string name)
+        public ActionResult<string> Hello(string name)
         {
             return "Hello " + name;
         }
@@ -50,16 +51,22 @@ namespace BooksApi.Controllers
         }
 
         [HttpGet("QueryString")]
-        public IActionResult Get([FromQuery(Name = "querystring")] string querystring)
+        public IActionResult QueryString([FromQuery(Name = "querystring")] string querystring)
         {
             return Ok("query testing: " + querystring);
         }
 
 
         [HttpGet("SumNumbers")]
-        public IActionResult Details(int num1, int num2)
+        public IActionResult SumNumbers(int num1, int num2)
         {
             return Ok(num1 + num2);
+        }
+
+        [HttpGet("ConnectionString")]
+        public ActionResult<string> ConnectionString()
+        {
+            return _settings.ConnectionString;
         }
 
     }
