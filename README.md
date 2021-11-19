@@ -72,7 +72,6 @@ docker run -p 4000:4000 -d api-books:latest
 ```
 docker-compose up -d
 ```
-> Note: Change 'localhost' to 'mongo-example' in file appsettings.json. Build and generate a new docker image.
 
 ## kubernetes
 
