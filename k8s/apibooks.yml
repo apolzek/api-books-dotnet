@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: api-books
-        image: apolzek/api-books:v1.4
+        image: apolzek/api-books:v1.5
         ports:
         - containerPort: 4000
 

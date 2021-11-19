@@ -3,6 +3,7 @@ using BooksApi.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
+using System.Text;
 
 namespace BooksApi.Controllers
 {
@@ -67,6 +68,56 @@ namespace BooksApi.Controllers
         public ActionResult<string> ConnectionString()
         {
             return _settings.ConnectionString;
+        }
+
+        [HttpGet("PrintHostname")]
+        public ActionResult<string> PrintHostname()
+        {
+
+            string command = "hostname";
+            string result = "";
+            using (System.Diagnostics.Process proc = new System.Diagnostics.Process())
+            {
+                proc.StartInfo.FileName = "/bin/bash";
+                proc.StartInfo.Arguments = "-c \" " + command + " \"";
+                proc.StartInfo.UseShellExecute = false;
+                proc.StartInfo.RedirectStandardOutput = true;
+                proc.StartInfo.RedirectStandardError = true;
+                proc.Start();
+
+                result += proc.StandardOutput.ReadToEnd();
+                result += proc.StandardError.ReadToEnd();
+
+                proc.WaitForExit();
+            }
+
+            return result;
+
+        }
+
+        [HttpGet("IP")]
+        public ActionResult<string> IP()
+        {
+
+            string command = "hostname -I";
+            string result = "";
+            using (System.Diagnostics.Process proc = new System.Diagnostics.Process())
+            {
+                proc.StartInfo.FileName = "/bin/bash";
+                proc.StartInfo.Arguments = "-c \" " + command + " \"";
+                proc.StartInfo.UseShellExecute = false;
+                proc.StartInfo.RedirectStandardOutput = true;
+                proc.StartInfo.RedirectStandardError = true;
+                proc.Start();
+
+                result += proc.StandardOutput.ReadToEnd();
+                result += proc.StandardError.ReadToEnd();
+
+                proc.WaitForExit();
+            }
+
+            return result;
+
         }
 
     }
