@@ -4,7 +4,7 @@ Web API with .NET and MongoDB :heavy_check_mark: .NET 5.0
 
 > TESTED dotnet --version => 5.0.402
 
-:whale2: **Latest**: apolzek/api-books:v1.5
+:whale2: **Latest**: apolzek/api-books:v1.6
 
 *Create a web API that performs Create, Read, Update, and Delete (CRUD) operations on a MongoDB NoSQL database.*
 
@@ -60,7 +60,7 @@ docker build -t <user>/api-books .
 ## Test Docker Image
 
 ```
-docker run -p 4000:4000 -d api-books:v1.5
+docker run -p 4000:4000 -d api-books:v1.6
 ```
 > Note: The image must be created in advance
 
