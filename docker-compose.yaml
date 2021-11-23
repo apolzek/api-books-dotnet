@@ -6,20 +6,20 @@ services:
     restart: always
     ports:
       - "27017:27017"
-    networks: 
+    networks:
       - network-test
 
   api-books-example:
     image: apolzek/api-books:v1.5
     ports:
       - "4000:4000"
-    networks: 
+    networks:
       - network-test
     links:
       - mongo-example
     depends_on:
       - mongo-example
-      
-networks: 
+
+networks:
   network-test:
-      driver: bridge
+    driver: bridge

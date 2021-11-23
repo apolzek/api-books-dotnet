@@ -70,7 +70,7 @@ namespace BooksApi.Controllers
 
             return NoContent();
         }
-        
+
         [HttpDelete()]
         public IActionResult Delete()
         {

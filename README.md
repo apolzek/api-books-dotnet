@@ -2,23 +2,23 @@
 
 Web API with .NET and MongoDB :heavy_check_mark: .NET 5.0
 
-> 5.0.402
+> TESTED dotnet --version => 5.0.402
 
-:whale2: **Latest**: apolzek/api-books:v1.4
+:whale2: **Latest**: apolzek/api-books:v1.5
 
 *Create a web API that performs Create, Read, Update, and Delete (CRUD) operations on a MongoDB NoSQL database.*
 
 ## Prerequisites
 
-- [.NET 5.0](https://dotnet.microsoft.com/download) or later
+- >= [.NET 5.0](https://dotnet.microsoft.com/download)
 - MongoDB
-- Docker Engine 20.10.10
-- docker-compose version 1.29.2
+- >= Docker Engine 20.10.10
+- >= docker-compose version 1.29.2
 
 ## Run development mode
 
 
-*api*:
+*1. run api*:
 
 ```
 cd api-books-dotnet5/
@@ -27,7 +27,7 @@ export ASPNETCORE_ENVIRONMENT=Development && dotnet run
 ```
 > browser: http://localhost:4000/swagger
 
-*mongodb*:
+*2. mongodb*:
 
 ```
 docker run --rm --name mongodb -p 27017:27017 mongo:latest
@@ -35,7 +35,7 @@ docker run --rm --name mongodb -p 27017:27017 mongo:latest
 sudo systemctl start mongod
 ```
 
-*validation* :
+*3. validation* :
 
 ```
 curl http://0.0.0.0:4000/health
@@ -53,14 +53,14 @@ dotnet publish -c Release -o publish_output
 ## Create a Docker Image
 
 ```
-docker build -t api-books .
+docker build -t <user>/api-books .
 ```
 > Note: api-books can be replaced
 
 ## Test Docker Image
 
 ```
-docker run -p 4000:4000 -d api-books:latest
+docker run -p 4000:4000 -d api-books:v1.5
 ```
 > Note: The image must be created in advance
 
@@ -72,6 +72,8 @@ docker-compose up -d
 
 ## kubernetes
 
+*Deploy api-books and mongo-example*
+
 ```
 cd k8s/
 kubectl apply -f .
@@ -79,9 +81,9 @@ kubectl apply -f .
 
 > kubectl v1.22.3
 
-## Details
+## API Details
 
-### Mongo object example 
+### Mongo object example(Books)
 
 ```javascript
 {
@@ -115,6 +117,16 @@ Add the following database configuration values to *appsettings.json*:
 
 > OBS: Replace localhost with your mongodb address
 
+### Test
+
+It has a controller with several tests for study purposes only. Ex:
+
+```
+curl -X GET "http://0.0.0.0:4000/api/test/GenerateException" -H  "accept: text/plain"
+```
+
+> Force return status code 500 
+
 ### Change port
 
 Edit *Program.cs* file
@@ -126,7 +138,7 @@ WebHost.CreateDefaultBuilder(args)
     .Build();
 ```
 
-> OBS: Iimpacts Docker image. change port in Dockerfile
+> OBS: Impacts Docker image. change port in Dockerfile
 
 ### Insert manually
 
