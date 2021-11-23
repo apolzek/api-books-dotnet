@@ -10,10 +10,10 @@ Web API with .NET and MongoDB :heavy_check_mark: .NET 5.0
 
 ## Prerequisites
 
-- >= [.NET 5.0](https://dotnet.microsoft.com/download)
+- [.NET 5.0](https://dotnet.microsoft.com/download) >= 
 - MongoDB
-- >= Docker Engine 20.10.10
-- >= docker-compose version 1.29.2
+- Docker Engine 20.10.10 >=
+- docker-compose version 1.29.2 >=
 
 ## Run development mode
 
