@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
 using System.Text;
+using System;
 
 namespace BooksApi.Controllers
 {
@@ -31,12 +32,6 @@ namespace BooksApi.Controllers
             _logger.LogWarning("LogDebug => Controller: TestController");
 
             return "api-books logging-levels";
-        }
-
-        [HttpGet("Hello")]
-        public ActionResult<string> Hello(string name)
-        {
-            return "Hello " + name;
         }
 
         [HttpGet("GetAllHeaders")]
@@ -117,6 +112,13 @@ namespace BooksApi.Controllers
             }
 
             return result;
+
+        }
+
+        [HttpGet("GenerateException")]
+        public ActionResult<string>GenerateException()
+        {
+            throw new InvalidOperationException("testing GenerateException ");
 
         }
 

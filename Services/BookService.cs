@@ -33,7 +33,8 @@ namespace BooksApi.Services
             return book;
         }
 
-        public void Update(string id, Book bookIn){
+        public void Update(string id, Book bookIn)
+        {
             bookIn.Id = id;
             _books.ReplaceOne(book => book.Id == id, bookIn);
         }
@@ -41,10 +42,11 @@ namespace BooksApi.Services
         public void Remove(Book bookIn) =>
             _books.DeleteOne(book => book.Id == bookIn.Id);
 
-        public void Remove(string id) => 
+        public void Remove(string id) =>
             _books.DeleteOne(book => book.Id == id);
 
-        public void Remove(){
+        public void Remove()
+        {
             _books.DeleteMany(book => book.Author is string);
         }
     }
