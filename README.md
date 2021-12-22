@@ -2,9 +2,9 @@
 
 Web API with .NET and MongoDB :heavy_check_mark: .NET 5.0
 
-> TESTED dotnet --version => 5.0.402
+> dotnet --version => 5.0.402
 
-:whale2: **Latest**: apolzek/api-books:v1.6
+:whale2: **image**: apolzek/api-books:v1.6
 
 *Create a web API that performs Create, Read, Update, and Delete (CRUD) operations on a MongoDB NoSQL database.*
 
@@ -117,7 +117,9 @@ Add the following database configuration values to *appsettings.json*:
 
 > OBS: Replace localhost with your mongodb address
 
-### Test
+### Random tests 
+
+> http://0.0.0.0:4000/api/test/<..>
 
 It has a controller with several tests for study purposes only. Ex:
 
