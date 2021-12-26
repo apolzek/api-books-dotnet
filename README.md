@@ -83,10 +83,11 @@ kubectl apply -f .
 ###  Helm
 
 ```bash
-cd helm
+cd helm/
 
 helm install api-books-dotnet5 .
 
+# Default: auth.enabled=true
 helm install mongo-example bitnami/mongodb --set fullnameOverride=mongo-example --set auth.enabled=false
 ```
 
