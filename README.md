@@ -72,11 +72,23 @@ docker-compose up -d
 
 ## kubernetes
 
+### Traditional(Yaml)
+
 *Deploy api-books and mongo-example*
 
-```
+```bash
 cd k8s/
 kubectl apply -f .
+```
+###  Helm
+
+```bash
+cd helm/
+
+helm install api-books-dotnet5 .
+
+# Default: auth.enabled=true
+helm install mongo-example bitnami/mongodb --set fullnameOverride=mongo-example --set auth.enabled=false
 ```
 
 > kubectl v1.22.3

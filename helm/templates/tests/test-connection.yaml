@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "..fullname" . }}-test-connection"
+  labels:
+    {{- include "..labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    - name: wget
+      image: curlimages/curl:7.80.0
+      command: ['curl']
+      args: ['http://api-books-dotnet5:6000']
+  restartPolicy: Never
