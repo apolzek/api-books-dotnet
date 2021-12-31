@@ -1,16 +1,16 @@
-# api-books-dotnet5
+# api-books-dotnet
 
-Web API with .NET and MongoDB :heavy_check_mark: .NET 5.0
+Web API with .NET and MongoDB :heavy_check_mark: .NET 6.0
 
-> dotnet --version => 5.0.402
+> dotnet --version => 6.0.101
 
-:whale2: **image**: apolzek/api-books:v1.6
+:whale2: **image**: apolzek/api-books:v1.7
 
 *Create a web API that performs Create, Read, Update, and Delete (CRUD) operations on a MongoDB NoSQL database.*
 
 ## Prerequisites
 
-- [.NET 5.0](https://dotnet.microsoft.com/download) >= 
+- [.NET 6.0](https://dotnet.microsoft.com/download)
 - MongoDB
 - Docker Engine 20.10.10 >=
 - docker-compose version 1.29.2 >=
@@ -21,7 +21,7 @@ Web API with .NET and MongoDB :heavy_check_mark: .NET 5.0
 *1. run api*:
 
 ```
-cd api-books-dotnet5/
+cd api-books-dotnet/
 dotnet restore
 export ASPNETCORE_ENVIRONMENT=Development && dotnet run
 ```
@@ -60,7 +60,7 @@ docker build -t <user>/api-books .
 ## Test Docker Image
 
 ```
-docker run -p 4000:4000 -d api-books:v1.6
+docker run -p 4000:4000 -d api-books:v1.7
 ```
 > Note: The image must be created in advance
 
@@ -85,7 +85,7 @@ kubectl apply -f .
 ```bash
 cd helm/
 
-helm install api-books-dotnet5 .
+helm install api-books-dotnet .
 
 # Default: auth.enabled=true
 helm install mongo-example bitnami/mongodb --set fullnameOverride=mongo-example --set auth.enabled=false
