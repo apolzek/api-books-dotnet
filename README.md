@@ -1,6 +1,6 @@
 # api-books-dotnet
 
-Web API with .NET and MongoDB :heavy_check_mark: .NET 6.0
+REST API with .NET and MongoDB :heavy_check_mark: CRUD
 
 > dotnet --version => 6.0.101
 
