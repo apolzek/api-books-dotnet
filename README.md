@@ -185,3 +185,21 @@ chmod +x fake-requests.sh
 
 ### HealthCheck
   - Access http://localhost:4000/health
+
+### scanapi
+
+Install:
+
+```
+cd scanapi
+virtualenv venv
+source venv/bin/activate
+python -m pip install --upgrade pip
+pip install scanapi
+```
+
+Run:
+
+```
+scanapi run
+```
