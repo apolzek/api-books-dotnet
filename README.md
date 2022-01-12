@@ -8,6 +8,14 @@ REST API with .NET and MongoDB :heavy_check_mark: CRUD
 
 *Create a web API that performs Create, Read, Update, and Delete (CRUD) operations on a MongoDB NoSQL database.*
 
+- [x] Health Check
+- [x] MongoDB Persistence 
+- [x] docker-compose
+- [x] kubernetes with yaml(kubectl)
+- [x] kubernetes with chart(helm)
+- [x] Swagger
+- [ ] Application Load Testing 
+
 ## Prerequisites
 
 - [.NET 6.0](https://dotnet.microsoft.com/download)
@@ -53,14 +61,15 @@ dotnet publish -c Release -o publish_output
 ## Create a Docker Image
 
 ```
-docker build -t <user>/api-books .
+docker build -t <user>/api-books<tagname> .
 ```
 > Note: api-books can be replaced
 
 ## Test Docker Image
 
 ```
-docker run -p 4000:4000 -d api-books:v1.7
+docker push <username>/api-books:<tagname>
+docker push apolzek/api-books:v1.7
 ```
 > Note: The image must be created in advance
 
@@ -72,6 +81,8 @@ docker-compose up -d
 
 ## kubernetes
 
+> kind version => kind v0.11.1 go1.16.4 linux/amd64
+
 ### Traditional(Yaml)
 
 *Deploy api-books and mongo-example*
@@ -80,6 +91,9 @@ docker-compose up -d
 cd k8s/
 kubectl apply -f .
 ```
+
+> kubectl v1.22.3
+
 ###  Helm
 
 ```bash
@@ -91,11 +105,13 @@ helm install api-books-dotnet .
 helm install mongo-example bitnami/mongodb --set fullnameOverride=mongo-example --set auth.enabled=false
 ```
 
-> kubectl v1.22.3
+> helm v3.7.2
 
 ## API Details
 
 ### Mongo object example(Books)
+
+> /api/Books
 
 ```javascript
 {
@@ -129,7 +145,7 @@ Add the following database configuration values to *appsettings.json*:
 
 > OBS: Replace localhost with your mongodb address
 
-### Random tests 
+### Other tests
 
 > http://0.0.0.0:4000/api/test/<..>
 
@@ -137,6 +153,8 @@ It has a controller with several tests for study purposes only. Ex:
 
 ```
 curl -X GET "http://0.0.0.0:4000/api/test/GenerateException" -H  "accept: text/plain"
+# or
+http "http://0.0.0.0:4000/api/test/GenerateException" accept:text/plain
 ```
 
 > Force return status code 500 
@@ -154,7 +172,7 @@ WebHost.CreateDefaultBuilder(args)
 
 > OBS: Impacts Docker image. change port in Dockerfile
 
-### Insert manually
+### Insert manually(mongo)
 
 *mongo cli*
 
@@ -167,11 +185,12 @@ db.Books.insertMany([{'BookName':'Design Patterns','Price':54.93,'Category':'Com
 
 ### Fake requests
 
+> Note: Install jq before
+
 ```
 chmod +x fake-requests.sh
 ./fake-requests.sh
 ```
-> Note: Install jq before
 
 ### Test the web API
 
