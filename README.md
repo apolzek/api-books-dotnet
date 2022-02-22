@@ -25,7 +25,6 @@ REST API with .NET and MongoDB :heavy_check_mark: CRUD
 
 ## Run development mode
 
-
 *1. run api*:
 
 ```
@@ -203,22 +202,5 @@ chmod +x fake-requests.sh
   - Example: `http://localhost:4000/swagger/index.html`
 
 ### HealthCheck
+
   - Access http://localhost:4000/health
-
-### scanapi
-
-Install:
-
-```
-cd scanapi
-virtualenv venv
-source venv/bin/activate
-python -m pip install --upgrade pip
-pip install scanapi
-```
-
-Run:
-
-```
-scanapi run
-```
