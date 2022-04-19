@@ -11,8 +11,8 @@ REST API with .NET and MongoDB :heavy_check_mark: CRUD
 - [x] Health Check
 - [x] MongoDB Persistence 
 - [x] docker-compose
-- [x] kubernetes with yaml(kubectl)
-- [x] kubernetes with chart(helm)
+- [x] kubernetes yaml(kubectl)
+- [x] kubernetes chart(helm)
 - [x] Swagger
 - [ ] Application Load Testing 
 
@@ -56,6 +56,7 @@ curl -X GET "http://0.0.0.0:4000/api/Books" -H  "accept: text/plain"
 ```
 dotnet publish -c Release -o publish_output
 ```
+> Just for info, this is ready in the Dockerfile(multi-stage builds)
 
 ## Create a Docker Image
 
@@ -68,7 +69,7 @@ docker build -t <user>/api-books<tagname> .
 
 ```
 docker push <username>/api-books:<tagname>
-docker push apolzek/api-books:v1.7
+# ex: docker push apolzek/api-books:v1.7
 ```
 > Note: The image must be created in advance
 
@@ -80,7 +81,7 @@ docker-compose up -d
 
 ## kubernetes
 
-> kind version => kind v0.11.1 go1.16.4 linux/amd64
+> Tested with kind version => kind v0.11.1 go1.16.4 linux/amd64
 
 ### Traditional(Yaml)
 
@@ -144,20 +145,6 @@ Add the following database configuration values to *appsettings.json*:
 
 > OBS: Replace localhost with your mongodb address
 
-### Other tests
-
-> http://0.0.0.0:4000/api/test/<..>
-
-It has a controller with several tests for study purposes only. Ex:
-
-```
-curl -X GET "http://0.0.0.0:4000/api/test/GenerateException" -H  "accept: text/plain"
-# or
-http "http://0.0.0.0:4000/api/test/GenerateException" accept:text/plain
-```
-
-> Force return status code 500 
-
 ### Change port
 
 Edit *Program.cs* file
@@ -204,6 +191,19 @@ chmod +x fake-requests.sh
 ### HealthCheck
 
   - Access http://localhost:4000/health
+
+### Lab endpoint
+
+> http://0.0.0.0:4000/api/test/<..>
+
+It has a controller with several tests for study purposes only. Ex:
+
+```
+curl -X GET "http://0.0.0.0:4000/api/test/GenerateException" -H  "accept: text/plain"
+# or
+http "http://0.0.0.0:4000/api/test/GenerateException" accept:text/plain
+```
+> Force return status code 500 
 
 ---
 
