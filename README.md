@@ -68,11 +68,6 @@ kind create cluster --name demo-api-books --config kind.yaml
 kind get clusters
 kind delete clusters demo-api-books
 ```
-or
-```
-kubectl apply -f https://raw.githubusercontent.com/apolzek/api-books-dotnet/main/k8s/apibooks.yml
-kubectl apply -f https://raw.githubusercontent.com/apolzek/api-books-dotnet/main/k8s/mongo.yml
-```
 
 ### Traditional Yaml
 
@@ -82,12 +77,15 @@ kubectl apply -f https://raw.githubusercontent.com/apolzek/api-books-dotnet/main
 kubectl apply -f ./k8s
 kubectl delete -f ./k8s
 ```
+or
+```
+kubectl apply -f https://raw.githubusercontent.com/apolzek/api-books-dotnet/main/k8s/apibooks.yml
+kubectl apply -f https://raw.githubusercontent.com/apolzek/api-books-dotnet/main/k8s/mongo.yml
+```
 
 ###  Helm
 
 ```bash
-cd helm/
-
 helm install api-books-dotnet helm/
 helm install mongo-example bitnami/mongodb --set fullnameOverride=mongo-example --set auth.enabled=false
 
