@@ -71,7 +71,7 @@ kind delete clusters demo-api-books
 
 ### Traditional Yaml
 
-*Deploy api-books and mongo-example*
+Deploy api-books and mongo-example
 
 ```bash
 kubectl apply -f ./k8s
@@ -119,8 +119,6 @@ kubectl port-forward svc/api-books-dotnet 4000:4000
   "Author" : "Robert C. Martin"
 }
 ```
-> /api/Books
-
 
 ### MongoDB settings
 
@@ -150,7 +148,7 @@ WebHost.CreateDefaultBuilder(args)
 
 ### Insert manually(mongo)
 
-*mongo cli*
+MongoDB cli
 
 ```
 docker exec -it <CONTAINER_ID> bash
@@ -159,7 +157,7 @@ use BookstoreDb
 db.Books.insertMany([{'BookName':'Design Patterns','Price':54.93,'Category':'Computers','Author':'Ralph Johnson'}, {'BookName':'Clean Code','Price':43.15,'Category':'Computers','Author':'Robert C. Martin'}])
 ```
 
-### swagger(open on brownser)
+### Swagger(open on brownser)
 
   - Navigate to `http://localhost:<port>/swagger/index.html`
   - Example: `http://localhost:4000/swagger/index.html`
