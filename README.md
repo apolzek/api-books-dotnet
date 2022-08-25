@@ -8,7 +8,7 @@ Create a web API that performs Create, Read, Update, and Delete (CRUD) operation
 
 - [x] Health Check
 - [x] MongoDB Persistence 
-- [x] Docker/ Docker Compose
+- [x] Dockerfile and docker-compose
 - [x] Kubernetes manifests
 - [x] Swagger
 
@@ -22,26 +22,22 @@ Create a web API that performs Create, Read, Update, and Delete (CRUD) operation
 
 ## Getting started
 
-Start MongoDB:
+Start MongoDB
 ```
-docker run --rm --name mongodb -p 27017:27017 mongo:latest
-```
-or
-```
-sudo systemctl start mongod
+docker run --rm --name mongodb -d -p 27017:27017 mongo:latest 
 ```
 
-Run application:
+Run application
 ```
 dotnet restore
 export ASPNETCORE_ENVIRONMENT=Development && dotnet run
 ```
 > browser: http://localhost:4000/swagger
 
-Checking:
+Checking
 ```
 curl http://0.0.0.0:4000/health
-curl -X GET "http://0.0.0.0:4000/api/Books" -H  "accept: text/plain"
+curl -X GET "http://0.0.0.0:4000/api/Books"
 ```
 
 ## Create/Publish a Docker Image
@@ -56,41 +52,34 @@ docker push <user>/api-books<tagname>
 
 ```
 docker compose up -d
-docker compose down
 ```
 
 ## kubernetes
 
-### Create a local cluster with kind
-
+Create a local cluster with kind
 ```
 kind create cluster --name demo-api-books --config kind.yaml
 kind get clusters
-kind delete clusters demo-api-books
 ```
 
-### Traditional Yaml
+### Deploy Yaml
 
 Deploy api-books and mongo-example
-
-```bash
-kubectl apply -f ./k8s
-kubectl delete -f ./k8s
 ```
+kubectl apply -f ./k8s
+```
+
 or
 ```
 kubectl apply -f https://raw.githubusercontent.com/apolzek/api-books-dotnet/main/k8s/apibooks.yml
 kubectl apply -f https://raw.githubusercontent.com/apolzek/api-books-dotnet/main/k8s/mongo.yml
 ```
 
-###  Helm
+### Deploy with Helm
 
-```bash
+```
 helm install api-books-dotnet helm/
 helm install mongo-example bitnami/mongodb --set fullnameOverride=mongo-example --set auth.enabled=false
-
-helm delete api-books-dotnet
-helm delete mongo-example
 ```
 
 ### Port-forward
@@ -120,24 +109,9 @@ kubectl port-forward svc/api-books-dotnet 4000:4000
 }
 ```
 
-### MongoDB settings
-
-Add the following database configuration values to *appsettings.json*:
-
-```javascript
-{
-  "BookstoreDatabaseSettings": {
-  "BooksCollectionName": "Books",
-  "ConnectionString": "mongodb://localhost:27017",
-  "DatabaseName": "BookstoreDb"
-},
-```
-> OBS: Replace localhost with your mongodb address
-
 ### Change port
 
 Edit *Program.cs* file
-
 ```
 WebHost.CreateDefaultBuilder(args)
     .UseStartup<Startup>()
@@ -149,7 +123,6 @@ WebHost.CreateDefaultBuilder(args)
 ### Insert manually(mongo)
 
 MongoDB cli
-
 ```
 docker exec -it <CONTAINER_ID> bash
 mongo
