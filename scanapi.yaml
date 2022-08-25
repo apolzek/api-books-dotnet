@@ -1,9 +1,0 @@
-endpoints:
-  - name: api-books-dotnet
-    path: http://localhost:4000
-    headers:
-      Content-Type: application/json
-    requests:
-      - name: health
-        method: get
-        path: /health
