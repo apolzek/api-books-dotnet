@@ -2,7 +2,7 @@
 
 REST API with .NET and MongoDB
 
-:whale2: **image**: apolzek/api-books:1.0
+:whale2: **image**: apolzek/api-books:1.1
 
 Create a web API that performs Create, Read, Update, and Delete (CRUD) operations on a MongoDB NoSQL database
 
@@ -14,23 +14,17 @@ Create a web API that performs Create, Read, Update, and Delete (CRUD) operation
 
 ## Prerequisites
 
-- [.NET 6.0](https://dotnet.microsoft.com/download)
+- [.NET 9.0](https://dotnet.microsoft.com/download)
 - MongoDB
-- Docker Engine >= 20.10.17 
-- Docker Compose >= v2.6.0
-- Helm >= v3.8.0
+- Docker Engine >= 28.0.4
+- Docker Compose >= v2.34.0
+- Helm >= v3.17.0
 
 ## Getting started
 
 Start MongoDB
 ```
 docker run --rm --name mongodb -d -p 27017:27017 mongo:latest 
-```
-
-asdf
-```
-asdf install dotnet-core 6.0.200
-asdf global dotnet-core 6.0.200
 ```
 
 Run application
@@ -64,7 +58,7 @@ docker compose up -d
 
 Create a local cluster with kind
 ```
-kind create cluster --name demo-api-books --config kind.yaml
+kind create cluster --name k8s-local-with-kind --config kind.yaml
 kind get clusters
 ```
 
@@ -77,14 +71,18 @@ kubectl apply -f ./k8s
 
 or
 ```
-kubectl apply -f https://raw.githubusercontent.com/apolzek/api-books-dotnet/main/k8s/apibooks.yml
+kubectl apply -f https://raw.githubusercontent.com/apolzek/api-books-dotnet/main/k8s/api-books.yml
 kubectl apply -f https://raw.githubusercontent.com/apolzek/api-books-dotnet/main/k8s/mongo.yml
 ```
 
 ### Deploy with Helm
 
 ```
+# deploy app
 helm install api-books-dotnet helm/
+
+# deploy database
+helm repo add bitnami https://charts.bitnami.com/bitnami
 helm install mongo-example bitnami/mongodb --set fullnameOverride=mongo-example --set auth.enabled=false
 ```
 
@@ -130,8 +128,8 @@ WebHost.CreateDefaultBuilder(args)
 
 MongoDB cli
 ```
-docker exec -it <CONTAINER_ID> bash
-mongo
+docker exec -it $(docker ps | grep mongo | awk '{print $1}')  bash
+mongosh
 use BookstoreDb
 db.Books.insertMany([{'BookName':'Design Patterns','Price':54.93,'Category':'Computers','Author':'Ralph Johnson'}, {'BookName':'Clean Code','Price':43.15,'Category':'Computers','Author':'Robert C. Martin'}])
 ```

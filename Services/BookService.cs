@@ -47,7 +47,7 @@ namespace BooksApi.Services
 
         public void Remove()
         {
-            _books.DeleteMany(book => book.Author is string);
+            _books.DeleteMany(book => book.Author != null);
         }
     }
 }
