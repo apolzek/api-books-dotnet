@@ -5,7 +5,7 @@ metadata:
   labels:
     app: api-books
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: api-books
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: api-books
-        image: apolzek/api-books:1.0
+        image: apolzek/api-books:1.1
         ports:
         - containerPort: 4000
 
