@@ -40,6 +40,21 @@ curl http://0.0.0.0:4000/health
 curl -X GET "http://0.0.0.0:4000/api/Books"
 ```
 
+## Tests
+
+Integration tests for the API live in `tests/BooksApi.Tests` (xUnit + `Microsoft.AspNetCore.Mvc.Testing`). They spin up the app in-memory with `WebApplicationFactory` and exercise the `TestController` endpoints plus the `/health` check — no MongoDB required.
+
+Run with the local .NET SDK:
+```
+dotnet test tests/BooksApi.Tests/BooksApi.Tests.csproj
+```
+
+Or, without installing .NET locally, run inside the official SDK container:
+```
+docker run --rm -v "$PWD":/src -w /src mcr.microsoft.com/dotnet/sdk:9.0 \
+  dotnet test tests/BooksApi.Tests/BooksApi.Tests.csproj
+```
+
 ## Create/Publish a Docker Image
 
 ```
