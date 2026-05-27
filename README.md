@@ -40,6 +40,22 @@ curl http://0.0.0.0:4000/health
 curl -X GET "http://0.0.0.0:4000/api/Books"
 ```
 
+## Changelog (security & hardening)
+
+- **Removed** `GET /api/test/ConnectionString` (exposed MongoDB connection string).
+- **Changed** `GET /api/test/PrintHostname` and `GET /api/test/IP` — now use `System.Net.Dns` / `NetworkInterface` instead of shelling out to `/bin/bash`.
+- **Added** `Book` model validation (`[Required]`, `[StringLength]`, `[Range]`) — invalid POST/PUT now returns `400` with a ProblemDetails body listing each field error.
+- **Added** global exception handler (`UseExceptionHandler` + `AddProblemDetails`) — unhandled exceptions now return RFC 9457 ProblemDetails in Production instead of a raw stack trace.
+- **Changed** Dockerfile — runs as non-root `app` user (uid 1000).
+- **Changed** `.dockerignore` — now excludes `bin/`, `obj/`, `.git/`, `.github/`, `tests/`, `helm/`, `k8s/`, IDE/editor folders.
+- **Changed** `k8s/api-books.yml` — added liveness/readiness probes on `/health`, resource requests/limits, `runAsNonRoot` pod securityContext, drop-all capabilities.
+- **Changed** `k8s/mongo.yml` — bumped `mongo:4.0.8` → `mongo:7.0`, added TCP probes and resource limits.
+- **Changed** `docker-compose.yaml` — pinned `mongo:7.0` (was floating `mongo:latest`).
+- **Changed** `helm/values.yaml` — `podSecurityContext`, `securityContext`, and `resources` now populated (were `{}`).
+- **Changed** `.github/workflows/dotnet.yml` — upgraded `actions/checkout@v2` → `@v4`, `actions/setup-dotnet@v1` → `@v4`, enabled `dotnet build` and `dotnet test` steps.
+- **Changed** `BooksController` — annotated every action with `[ProducesResponseType]` so Swagger documents 200/201/204/400/404.
+- **Changed** `BooksApi.csproj` — opted into `<Nullable>warnings</Nullable>`.
+
 ## Tests
 
 Integration tests for the API live in `tests/BooksApi.Tests` (xUnit + `Microsoft.AspNetCore.Mvc.Testing`). They spin up the app in-memory with `WebApplicationFactory` and exercise the `TestController` endpoints plus the `/health` check — no MongoDB required.

@@ -1,5 +1,6 @@
-﻿using BooksApi.Models;
+using BooksApi.Models;
 using BooksApi.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -17,10 +18,13 @@ namespace BooksApi.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(typeof(List<Book>), StatusCodes.Status200OK)]
         public ActionResult<List<Book>> Get() =>
             _bookService.Get();
 
         [HttpGet("{id:length(24)}", Name = "GetBook")]
+        [ProducesResponseType(typeof(Book), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<Book> Get(string id)
         {
             var book = _bookService.Get(id);
@@ -34,6 +38,8 @@ namespace BooksApi.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(typeof(Book), StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult<Book> Create(Book book)
         {
             _bookService.Create(book);
@@ -42,6 +48,9 @@ namespace BooksApi.Controllers
         }
 
         [HttpPut("{id:length(24)}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult Update(string id, Book bookIn)
         {
             var book = _bookService.Get(id);
@@ -57,6 +66,8 @@ namespace BooksApi.Controllers
         }
 
         [HttpDelete("{id:length(24)}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult Delete(string id)
         {
             var book = _bookService.Get(id);
@@ -72,6 +83,7 @@ namespace BooksApi.Controllers
         }
 
         [HttpDelete()]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public IActionResult Delete()
         {
             _bookService.Remove();

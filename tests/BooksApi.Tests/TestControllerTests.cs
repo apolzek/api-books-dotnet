@@ -60,15 +60,6 @@ public class TestControllerTests : IClassFixture<TestAppFactory>
     }
 
     [Fact]
-    public async Task ConnectionString_ReturnsConfiguredValue()
-    {
-        var response = await _client.GetAsync("/api/test/ConnectionString");
-        response.EnsureSuccessStatusCode();
-        var body = await response.Content.ReadAsStringAsync();
-        Assert.Equal("mongodb://localhost:27017", body);
-    }
-
-    [Fact]
     public async Task Status_ReturnsRequestedStatusCode()
     {
         var response = await _client.GetAsync("/api/test/Status?response=404");

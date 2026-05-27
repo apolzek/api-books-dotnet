@@ -7,6 +7,9 @@ using System.Text;
 using System;
 using System.Threading.Tasks;
 using System.Net;
+using System.Net.NetworkInformation;
+using System.Net.Sockets;
+using System.Linq;
 
 namespace BooksApi.Controllers
 {
@@ -15,13 +18,10 @@ namespace BooksApi.Controllers
     public class TestController : ControllerBase
     {
         private readonly ILogger<TestController> _logger;
-        private readonly IBookstoreDatabaseSettings _settings;
-        // private readonly BookService _bookService;
 
-        public TestController(ILogger<TestController> logger, IBookstoreDatabaseSettings settings)
+        public TestController(ILogger<TestController> logger)
         {
             _logger = logger;
-            _settings = settings;
         }
 
         [HttpGet("LoggingLevels")]
@@ -61,60 +61,23 @@ namespace BooksApi.Controllers
             return Ok(num1 + num2);
         }
 
-        [HttpGet("ConnectionString")]
-        public ActionResult<string> ConnectionString()
-        {
-            return _settings.ConnectionString;
-        }
-
         [HttpGet("PrintHostname")]
         public ActionResult<string> PrintHostname()
         {
-
-            string command = "hostname";
-            string result = "";
-            using (System.Diagnostics.Process proc = new System.Diagnostics.Process())
-            {
-                proc.StartInfo.FileName = "/bin/bash";
-                proc.StartInfo.Arguments = "-c \" " + command + " \"";
-                proc.StartInfo.UseShellExecute = false;
-                proc.StartInfo.RedirectStandardOutput = true;
-                proc.StartInfo.RedirectStandardError = true;
-                proc.Start();
-
-                result += proc.StandardOutput.ReadToEnd();
-                result += proc.StandardError.ReadToEnd();
-
-                proc.WaitForExit();
-            }
-
-            return result;
-
+            return Dns.GetHostName();
         }
 
         [HttpGet("IP")]
         public ActionResult<string> IP()
         {
+            var addresses = NetworkInterface.GetAllNetworkInterfaces()
+                .Where(nic => nic.OperationalStatus == OperationalStatus.Up
+                              && nic.NetworkInterfaceType != NetworkInterfaceType.Loopback)
+                .SelectMany(nic => nic.GetIPProperties().UnicastAddresses)
+                .Where(addr => addr.Address.AddressFamily == AddressFamily.InterNetwork)
+                .Select(addr => addr.Address.ToString());
 
-            string command = "hostname -I";
-            string result = "";
-            using (System.Diagnostics.Process proc = new System.Diagnostics.Process())
-            {
-                proc.StartInfo.FileName = "/bin/bash";
-                proc.StartInfo.Arguments = "-c \" " + command + " \"";
-                proc.StartInfo.UseShellExecute = false;
-                proc.StartInfo.RedirectStandardOutput = true;
-                proc.StartInfo.RedirectStandardError = true;
-                proc.Start();
-
-                result += proc.StandardOutput.ReadToEnd();
-                result += proc.StandardError.ReadToEnd();
-
-                proc.WaitForExit();
-            }
-
-            return result;
-
+            return string.Join(' ', addresses);
         }
 
         [HttpGet("GenerateException")]
@@ -137,7 +100,7 @@ namespace BooksApi.Controllers
             {
                 return BadRequest("O tempo deve ser maior ou igual a zero");
             }
-            
+
             if (milliseconds > 30000) // Limite de 30 segundos
             {
                 return BadRequest("O tempo máximo permitido é de 30 segundos (30000 ms)");
@@ -155,12 +118,12 @@ namespace BooksApi.Controllers
                 201 => "Created - Recurso criado com sucesso",
                 202 => "Accepted - Requisição aceita para processamento",
                 204 => "No Content - Requisição bem sucedida, sem conteúdo para retornar",
-                
+
                 300 => "Multiple Choices - Múltiplas opções disponíveis",
                 301 => "Moved Permanently - Recurso movido permanentemente",
                 302 => "Found - Recurso encontrado em outra URL",
                 304 => "Not Modified - Recurso não foi modificado",
-                
+
                 400 => "Bad Request - Requisição inválida ou malformada",
                 401 => "Unauthorized - Autenticação é necessária",
                 403 => "Forbidden - Sem permissão para acessar o recurso",
@@ -173,13 +136,13 @@ namespace BooksApi.Controllers
                 413 => "Payload Too Large - Tamanho da requisição excede o limite",
                 415 => "Unsupported Media Type - Formato de mídia não suportado",
                 429 => "Too Many Requests - Muitas requisições em um período de tempo",
-                
+
                 500 => "Internal Server Error - Erro interno do servidor",
                 501 => "Not Implemented - Funcionalidade não implementada",
                 502 => "Bad Gateway - Resposta inválida do servidor upstream",
                 503 => "Service Unavailable - Serviço temporariamente indisponível",
                 504 => "Gateway Timeout - Tempo limite excedido no gateway",
-                
+
                 _ => $"Status code {statusCode} - Código personalizado"
             };
         }

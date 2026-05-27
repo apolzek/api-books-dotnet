@@ -16,12 +16,38 @@ spec:
     spec:
       containers:
       - name: mongo-example
-        image: mongo:4.0.8
+        image: mongo:7.0
+        ports:
+        - containerPort: 27017
+          name: mongo
+        livenessProbe:
+          tcpSocket:
+            port: mongo
+          initialDelaySeconds: 30
+          periodSeconds: 20
+        readinessProbe:
+          tcpSocket:
+            port: mongo
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        resources:
+          requests:
+            cpu: 100m
+            memory: 256Mi
+          limits:
+            cpu: 500m
+            memory: 512Mi
       #   env:
       #     - name: MONGO_INITDB_ROOT_USERNAME
-      #       value: admin
+      #       valueFrom:
+      #         secretKeyRef:
+      #           name: mongo-credentials
+      #           key: username
       #     - name: MONGO_INITDB_ROOT_PASSWORD
-      #       value: password
+      #       valueFrom:
+      #         secretKeyRef:
+      #           name: mongo-credentials
+      #           key: password
       # nodeSelector:
       #   kubernetes.io/hostname: mongodb-node
 

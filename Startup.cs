@@ -5,7 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -39,6 +41,8 @@ namespace BooksApi
             services.AddControllers()
                 .AddNewtonsoftJson(options => options.UseMemberCasing());
 
+            services.AddProblemDetails();
+
             services.AddSwaggerGen();
 
             services.AddHealthChecks();
@@ -53,6 +57,7 @@ namespace BooksApi
             }
             else
             {
+                app.UseExceptionHandler();
                 app.UseHsts();
             }
 
